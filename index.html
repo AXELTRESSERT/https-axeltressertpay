@@ -1,1 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment + Tools Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+    }
+    .login-container, .dashboard {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .login-container.active, .dashboard.active {
+      display: flex;
+    }
+    .login-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .login-box input {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+      padding: 8px;
+    }
+    .login-box button {
+      padding: 8px 16px;
+      background: #4CAF50;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .dashboard-content {
+      max-width: 600px;
+      width: 100%;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .dashboard-content img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .payment-info {
+      text-align: center;
+      margin: 15px 0;
+    }
+    .payment-info p {
+      margin: 5px 0;
+    }
+    .menu-section {
+      margin-top: 20px;
+    }
+    .menu-section h3 {
+      background: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .menu-section select, .menu-section input, .menu-section button {
+      width: 100%;
+      margin: 5px 0;
+      padding: 8px;
+    }
+    video {
+      width: 300px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
 
+<div class="login-container active">
+  <div class="login-box">
+    <video src="https://files.catbox.moe/0wpi8r.mp4" autoplay muted loop></video>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div class="dashboard-content">
+    <img src="https://files.catbox.moe/hfd11r.jpeg" alt="Dashboard Payment">
+    <div class="payment-info">
+      <p><strong>DANA:</strong> 082173490126</p>
+      <p><strong>OVO:</strong> 082173490126</p>
+      <p><strong>QRIS:</strong> <a href="https://wa.me/6282173490126" target="_blank">Klik di sini</a></p>
+    </div>
+
+    <!-- Bug WA Menu -->
+    <div class="menu-section">
+      <h3>Bug WA</h3>
+      <select id="bugwa-menu">
+        <option value="invis-x">Invis-X</option>
+        <option value="delay-hard">Delay-Hard</option>
+        <option value="invis-super">Invis-Super</option>
+        <option value="invis-fc">Invis-FC</option>
+        <option value="caro-x">Caro-X</option>
+        <option value="alya-combo">Alya-Combo</option>
+      </select>
+      <input type="text" id="bugwa-nomor" placeholder="Nomor Target (628xxx)">
+      <input type="password" id="bugwa-pw" placeholder="Password (alyacantik)">
+      <button onclick="sendBugWA()">Kirim Bug WA</button>
+    </div>
+
+    <!-- DDoS Menu -->
+    <div class="menu-section">
+      <h3>DDoS</h3>
+      <select id="ddos-menu">
+        <option value="layer7">Layer7</option>
+        <option value="itcp">ITCP</option>
+        <option value="icmp">ICMP</option>
+        <option value="flood">Flood</option>
+        <option value="super-floor">Super-Floor</option>
+        <option value="ddos-grup">DDoS-Grup</option>
+      </select>
+      <input type="text" id="ddos-url" placeholder="URL Target">
+      <input type="password" id="ddos-pw" placeholder="Password (axel)">
+      <select id="ddos-method">
+        <option value="strike">Strike</option>
+        <option value="ninja">Ninja</option>
+        <option value="invisible">Invisible</option>
+      </select>
+      <button onclick="sendDDoS()">Mulai DDoS</button>
+    </div>
+
+    <!-- Spam Menu -->
+    <div class="menu-section">
+      <h3>Spam Menu</h3>
+      <select id="spam-menu">
+        <option value="sms">SMS</option>
+        <option value="axel-spam">Axel-Spam</option>
+        <option value="app-spam">App-Spam</option>
+      </select>
+      <input type="text" id="spam-nomor" placeholder="Nomor Target (628xxx)">
+      <button onclick="sendSpam()">Kirim Spam</button>
+    </div>
+
+    <!-- Banned WA -->
+    <div class="menu-section">
+      <h3>Banned WA</h3>
+      <select id="banwa-menu">
+        <option value="ban-axel">Ban-Axel</option>
+        <option value="axel-fuck">Axel-Fuck</option>
+        <option value="axel-gagah">Axel-Gagah</option>
+        <option value="lover-banned">Lover-Banned</option>
+        <option value="cipok-ban">Cipok-Ban</option>
+      </select>
+      <input type="text" id="banwa-nomor" placeholder="Nomor Target (628xxx)">
+      <button onclick="sendBanWA()">Ban WA</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function login() {
+    const usn = document.getElementById('username').value;
+    const pw = document.getElementById('password').value;
+    if(usn && pw) {
+      document.querySelector('.login-container').classList.remove('active');
+      document.querySelector('.dashboard').classList.add('active');
+    } else {
+      alert("Username dan password wajib diisi!");
+    }
+  }
+
+  function sendBugWA() {
+    const nomor = document.getElementById('bugwa-nomor').value;
+    const pw = document.getElementById('bugwa-pw').value;
+    const menu = document.getElementById('bugwa-menu').value;
+    if(nomor && pw === "alyacantik"){
+      alert(`Bug WA "${menu}" dikirim ke ${nomor}`);
+    } else {
+      alert("Isi nomor + password dengan benar");
+    }
+  }
+
+  function sendDDoS() {
+    const url = document.getElementById('ddos-url').value;
+    const pw = document.getElementById('ddos-pw').value;
+    const menu = document.getElementById('ddos-menu').value;
+    const method = document.getElementById('ddos-method').value;
+    if(url && pw === "axel"){
+      alert(`DDoS ${menu} (${method}) ke ${url} dimulai`);
+    } else {
+      alert("Isi URL + password dengan benar");
+    }
+  }
+
+  function sendSpam() {
+    const nomor = document.getElementById('spam-nomor').value;
+    const menu = document.getElementById('spam-menu').value;
+    if(nomor){
+      alert(`Spam "${menu}" dikirim ke ${nomor}`);
+    } else {
+      alert("Isi nomor dengan benar");
+    }
+  }
+
+  function sendBanWA() {
+    const nomor = document.getElementById('banwa-nomor').value;
+    const menu = document.getElementById('banwa-menu').value;
+    if(nomor){
+      alert(`Banned WA "${menu}" dikirim ke ${nomor}`);
+    } else {
+      alert("Isi nomor dengan benar");
+    }
+  }
+</script>
+
+</body>
+</html>
